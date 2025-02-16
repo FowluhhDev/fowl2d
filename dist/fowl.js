@@ -22,7 +22,7 @@ function initEngine(baseScene, pixelated = false) {
   let then = performance.now();
   let delta;
   function gameLoop() {
-    let interval = 16.666666666666668;
+    let interval = 1000 / 60;
     now = performance.now();
     delta = now - then;
     if (delta > interval) {
@@ -82,7 +82,7 @@ class Sound extends AudioObject {
   }
 }
 
-// src/class/drawing/font.ts
+// src/class/graphics/font.ts
 class Font {
   size;
   name;
@@ -138,7 +138,7 @@ class GameObject extends Basic {
   }
 }
 
-// src/class/drawing/group.ts
+// src/class/graphics/group.ts
 class Group extends GameObject {
   objects;
   x;
@@ -160,14 +160,14 @@ class Group extends GameObject {
       }
     }
   }
-  add(object2, callback = () => {
+  add(object, callback = () => {
   }) {
     callback();
-    this.objects.push(object2);
+    this.objects.push(object);
   }
 }
 
-// src/class/drawing/outlinedRectangle.ts
+// src/class/graphics/outlinedRectangle.ts
 class OutlinedRectangleShape extends GameObject {
   x;
   y;
@@ -194,7 +194,7 @@ class OutlinedRectangleShape extends GameObject {
   }
 }
 
-// src/class/drawing/outlineText.ts
+// src/class/graphics/outlineText.ts
 class OutlinedTextLabel extends GameObject {
   x;
   y;
@@ -223,7 +223,7 @@ class OutlinedTextLabel extends GameObject {
   }
 }
 
-// src/class/drawing/rectangle.ts
+// src/class/graphics/rectangle.ts
 class RectangleShape extends GameObject {
   x;
   y;
@@ -244,7 +244,7 @@ class RectangleShape extends GameObject {
   }
 }
 
-// src/class/drawing/slicedSprite.ts
+// src/class/graphics/slicedSprite.ts
 class SlicedSprite extends GameObject {
   src;
   scale;
@@ -277,7 +277,7 @@ class SlicedSprite extends GameObject {
   }
 }
 
-// src/class/drawing/sprite.ts
+// src/class/graphics/sprite.ts
 class Sprite extends GameObject {
   src;
   scale = 1;
@@ -302,7 +302,7 @@ class Sprite extends GameObject {
   }
 }
 
-// src/class/drawing/text.ts
+// src/class/graphics/text.ts
 class TextLabel extends GameObject {
   x;
   y;
@@ -326,12 +326,12 @@ class TextLabel extends GameObject {
 
 // src/data/collisionSides.ts
 var CollisionSides;
-(function(CollisionSides2) {
+((CollisionSides2) => {
   CollisionSides2[CollisionSides2["TOP"] = 0] = "TOP";
   CollisionSides2[CollisionSides2["BOTTOM"] = 1] = "BOTTOM";
   CollisionSides2[CollisionSides2["LEFT"] = 2] = "LEFT";
   CollisionSides2[CollisionSides2["RIGHT"] = 3] = "RIGHT";
-})(CollisionSides || (CollisionSides = {}));
+})(CollisionSides ||= {});
 
 // src/func/collision.ts
 function getCollision(obj1, obj2) {
@@ -360,22 +360,22 @@ function getCollisionSide(obj1, obj2) {
     if (depthX != 0 && depthY != 0) {
       if (Math.abs(depthX) < Math.abs(depthY)) {
         if (depthX > 0) {
-          return CollisionSides.LEFT;
+          return 2 /* LEFT */;
         } else {
-          return CollisionSides.RIGHT;
+          return 3 /* RIGHT */;
         }
       } else {
         if (depthY > 0) {
-          return CollisionSides.BOTTOM;
+          return 1 /* BOTTOM */;
         } else {
-          return CollisionSides.TOP;
+          return 0 /* TOP */;
         }
       }
     }
   }
 }
 
-// src/class/drawing/tileMap.ts
+// src/class/graphics/tileMap.ts
 class TileMap extends GameObject {
   data;
   offsetX;
@@ -477,7 +477,7 @@ var mouseController = {
   2: { down: false }
 };
 
-// src/class/drawing/camera.ts
+// src/class/graphics/camera.ts
 class Camera extends GameObject {
   x;
   y;
@@ -498,10 +498,10 @@ class Camera extends GameObject {
       window.ctx.translate(-this.x, -this.y);
     }
   }
-  follow(object10) {
+  follow(object) {
     this.lastX = this.x;
     this.lastY = this.y;
-    this.lockObject = object10;
+    this.lockObject = object;
     this.lock = true;
   }
   unfollow() {
@@ -518,8 +518,8 @@ function getKeys(keys) {
 function getMouseKeys(keys) {
   return keys.some((key) => mouseController[key].down == true);
 }
-function getMousePos(canvas3, event) {
-  var rect = canvas3.getBoundingClientRect();
+function getMousePos(canvas2, event) {
+  var rect = canvas2.getBoundingClientRect();
   return {
     x: event.clientX - rect.left,
     y: event.clientY - rect.top
@@ -593,10 +593,10 @@ class State {
   }
   update(delta) {
   }
-  add(object10, callback = () => {
+  add(object, callback = () => {
   }) {
     callback();
-    this.objects.push(object10);
+    this.objects.push(object);
   }
   addPreload(name, data) {
     this.preloads[name] = data;
@@ -682,7 +682,7 @@ var colors = {
 
 // src/func/startGame.ts
 function startGame(defaultScene) {
-  console.log("Fowl2D - FowluhhDev, Me1ad, and Kat21");
+  console.log("Fowl2D v1.1 - FowluhhDev, Me1ad, and Kat21");
   initEngine(defaultScene);
 }
 
@@ -710,8 +710,8 @@ class AudioBus {
       this.clips[c].audio.volume = vol / 100;
     }
   }
-  add(object10) {
-    this.clips.push(object10);
+  add(object) {
+    this.clips.push(object);
   }
 }
 export {

@@ -13,6 +13,6 @@ You can get the template here: [FowlJS Template](https://github.com/fowluhhdevbc
 
 ## Developers
 
-- FowluhhDevBCFunny
+- FowluhhDev
 - Me1ad
 - Kat21 (also made the entirety of v0.5)

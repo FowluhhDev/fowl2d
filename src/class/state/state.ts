@@ -1,8 +1,8 @@
 import { canvas } from "../../data/canvas";
 import { controller, mouseController} from "../../data/controller";
-import { RectangleShape } from "../drawing/rectangle";
+import { RectangleShape } from "../graphics/rectangle";
 import type { StateManager } from "./stateManager";
-import { Camera } from "../drawing/camera";
+import { Camera } from "../graphics/camera";
 import type { GameObject } from "../types/object";
 import { getMousePos } from "../../func/getKeys";
 import { colors } from "../../fowl";
