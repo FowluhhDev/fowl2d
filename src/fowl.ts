@@ -26,6 +26,7 @@ import { Event } from "./class/types/event";
 import { AudioBus } from "./class/audio/audiobus";
 import { AudioObject } from "./class/types/audio";
 import { Basic } from "./class/types/basic";
+import { lerp, Vec2 } from "./class/utils/math";
 
 declare global {
   interface Window {
@@ -54,6 +55,8 @@ export {
   TextLabel,
   TileMap,
   Event,
+  Vec2,
+  lerp,
   State,
   StateManager,
   getCanvas,

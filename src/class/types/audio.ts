@@ -17,4 +17,3 @@ export class AudioObject {
         if (this.ready || force) this.audio.play();
     }
 }
-
