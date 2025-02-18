@@ -1,5 +1,6 @@
 import { getCollision } from "../../func/collision";
 import { GameObject } from "../types/object";
+import { Vec2 } from "../../data/math";
 import { Group } from "./group";
 import { Sprite } from "./sprite";
 
@@ -10,7 +11,7 @@ export class TileMap extends GameObject {
   tileSize: any;
   tilePaths: string[];
   constructor(data: any, tileSize: any, offsetX = 0, offsetY = 0) {
-    super(offsetX, offsetY);
+    super(new Vec2(offsetX, offsetY), new Vec2(0, 0));
     this.data = data;
     this.offsetX = offsetX;
     this.offsetY = offsetY;
@@ -23,15 +24,14 @@ export class TileMap extends GameObject {
   }
 
   draw() {
-    var tileGroup = new Group();
+    var tileGroup = new Group(new Vec2(this.offsetX, this.offsetY));
     for (let y = 0; y < this.data.length; y++) {
       const row = this.data[y];
       for (let x = 0; x < row.length; x++) {
         const tile = this.data[y][x];
         var tileImage = new Sprite(
           this.tilePaths[tile],
-          this.offsetX + x * this.tileSize,
-          this.offsetY + y * this.tileSize
+          new Vec2(x * this.tileSize, y * this.tileSize)
         );
         tileGroup.add(tileImage);
       }
@@ -39,11 +39,10 @@ export class TileMap extends GameObject {
     tileGroup.draw();
   }
 
-  getCollision(obj1: any, tileX: number, tileY: number) {
+  getCollision(obj1: GameObject, tileX: number, tileY: number) {
     let tile = new GameObject(
-      tileX * this.tileSize + this.offsetX,
-      tileY * this.tileSize + this.offsetY,
-      this.tileSize, this.tileSize
+      new Vec2(tileX * this.tileSize + this.offsetX, tileY * this.tileSize + this.offsetY),
+      new Vec2(this.tileSize, this.tileSize)
     )
     return getCollision(
       obj1,

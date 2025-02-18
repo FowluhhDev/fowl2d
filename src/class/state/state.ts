@@ -6,6 +6,7 @@ import { Camera } from "../graphics/camera";
 import type { GameObject } from "../types/object";
 import { getMousePos } from "../../func/getKeys";
 import { colors } from "../../fowl";
+import { Vec2 } from "../../data/math"
 
 export class State {
   constructor() {
@@ -69,13 +70,11 @@ export class State {
 
     this.objects = [];
 
-    this.camera = new Camera();
+    this.camera = new Camera(new Vec2(0, 0));
 
     this.bg = new RectangleShape(
-      -10000,
-      -10000,
-      10000 + canvas().width,
-      10000 + canvas().height,
+      new Vec2(-10000, -10000),
+      new Vec2(10000 + canvas().width, 10000 + canvas().height),
       this.bgColor
     );
 

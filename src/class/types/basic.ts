@@ -1,12 +1,12 @@
+import type { Vec2 } from "../../data/math";
+
 export class Basic {
-    x:number;
-    y:number;
+    position:Vec2;
 
     exists:boolean = true;
     
-    constructor(x:number = 0, y:number = 0) {
-        this.x = x;
-        this.y = y;
+    constructor(position:Vec2) {
+        this.position = position;
     }
 
     kill() {

@@ -18,7 +18,7 @@ import { CollisionSides } from "./data/collisionSides";
 import { colors } from "./data/colors";
 import { type Controller, controller } from "./data/controller";
 import { getCollision, getCollisionSide } from "./func/collision";
-import { getKeys, getMouseKeys } from "./func/getKeys";
+import { getKeys, getKeyValue, getMouseKeys } from "./func/getKeys";
 import { startGame } from "./func/startGame";
 import { Camera } from "./class/graphics/camera";
 import { GameObject } from "./class/types/object";
@@ -26,7 +26,7 @@ import { Event } from "./class/types/event";
 import { AudioBus } from "./class/audio/audiobus";
 import { AudioObject } from "./class/types/audio";
 import { Basic } from "./class/types/basic";
-import { lerp, Vec2 } from "./class/utils/math";
+import { lerp, Vec2 } from "./data/math";
 
 declare global {
   interface Window {
@@ -68,6 +68,7 @@ export {
   getCollision,
   getCollisionSide,
   getKeys,
+  getKeyValue,
   getMouseKeys,
   startGame,
 };

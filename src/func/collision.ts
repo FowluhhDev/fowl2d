@@ -6,10 +6,10 @@ export function getCollision(
   obj2: GameObject
 ) {
   if (
-    obj1.x < obj2.x + obj2.w &&
-    obj1.x + obj1.w > obj2.x &&
-    obj1.y < obj2.y + obj2.h &&
-    obj1.y + obj1.h > obj2.y
+    obj1.position.x < obj2.position.x + obj2.size.x &&
+    obj1.position.x + obj1.size.x > obj2.position.x &&
+    obj1.position.y < obj2.position.y + obj2.size.y &&
+    obj1.position.y + obj1.size.y > obj2.position.y
   ) {
     return true;
   } else {
@@ -21,14 +21,14 @@ export function getCollisionSide(
   obj2: GameObject,
 ) {
   if (getCollision(obj1, obj2)) {
-    var obj1HalfW = obj1.w / 2;
-    var obj1HalfH = obj1.h / 2;
-    var obj2HalfW = obj2.w / 2;
-    var obj2HalfH = obj2.h / 2;
-    var obj1CenterX = obj1.x + obj1.w / 2;
-    var obj1CenterY = obj1.y + obj1.h / 2;
-    var obj2CenterX = obj2.x + obj2.w / 2;
-    var obj2CenterY = obj2.y + obj2.h / 2;
+    var obj1HalfW = obj1.size.x / 2;
+    var obj1HalfH = obj1.size.y / 2;
+    var obj2HalfW = obj2.size.x / 2;
+    var obj2HalfH = obj2.size.y / 2;
+    var obj1CenterX = obj1.position.x + obj1.size.x / 2;
+    var obj1CenterY = obj1.position.y + obj1.size.y / 2;
+    var obj2CenterX = obj2.position.x + obj2.size.x / 2;
+    var obj2CenterY = obj2.position.y + obj2.size.y / 2;
 
     var diffX = obj1CenterX - obj2CenterX;
     var diffY = obj1CenterY - obj2CenterY;

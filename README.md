@@ -8,11 +8,6 @@ Make sure you have Bun installed and run `bun i` to install dependencies, then r
 
 ## HOW TO USE
 
-You can get the template here: [FowlJS Template](https://github.com/fowluhhdevbcfunny/fowljs-template).
+You can get the template [here.](https://github.com/FowluhhDev/fowl2d-template)
+
 [The wiki](https://github.com/fowluhhdevbcfunny/fowljs/wiki) also has more info so make sure to read that.
-
-## Developers
-
-- FowluhhDev
-- Me1ad
-- Kat21 (also made the entirety of v0.5)

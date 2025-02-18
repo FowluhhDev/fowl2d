@@ -1,21 +1,17 @@
 // base class for a game object
 
+import { Vec2 } from "../../data/math";
 import { Basic } from "./basic";
 
 export class GameObject extends Basic {
-    w:number;
-    h:number;
+    size:Vec2;
 
     visible:boolean = true;
     
-    constructor(x:number = 0, y:number = 0, w:number = 0, h:number = 0) {
-        super(x, y);
+    constructor(position:Vec2, size:Vec2) {
+        super(position);
 
-        this.x = x;
-        this.y = y;
-
-        this.w = w;
-        this.h = h;
+        this.size = size;
     }
 
     canDraw() {

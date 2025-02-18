@@ -13,6 +13,14 @@ export class Vec2 {
     cross(other: Vec2) {
         return (this.x * other.y) - (other.x * this.y)
     }
+
+    normalized():Vec2 {
+        let normalizer = Math.sqrt(this.x * this.x + this.y * this.y)
+        if (normalizer === 0) {
+            return new Vec2(0, 0);
+        }
+        return new Vec2(this.x / normalizer, this.y / normalizer);
+    }
 }
 
 export function lerp(start_value: number, end_value: number, time: number) {

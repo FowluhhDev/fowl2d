@@ -1,9 +1,8 @@
 import { GameObject } from "../types/object";
+import { Vec2 } from "../../data/math";
 import type { Font } from "./font";
 
 export class OutlinedTextLabel extends GameObject {
-  x: number;
-  y: number;
   font: Font;
   color: string;
   text: string;
@@ -11,16 +10,13 @@ export class OutlinedTextLabel extends GameObject {
   outline_width: number;
   constructor(
     text: string,
-    x: number,
-    y: number,
+    position:Vec2,
     color: string,
     outline_color: string,
     outline_width: number,
     font: Font
   ) {
-    super(x, y);
-    this.x = x;
-    this.y = y;
+    super(position, new Vec2(0, 0));
     this.font = font;
     this.color = color;
     this.text = text;
@@ -35,9 +31,9 @@ export class OutlinedTextLabel extends GameObject {
     window.ctx.lineWidth = this.outline_width * 2;
     window.ctx.strokeText(
       this.text,
-      this.x,
-      this.y + (this.font.getSize() - 10)
+      this.position.x,
+      this.position.y + (this.font.getSize() - 10)
     );
-    window.ctx.fillText(this.text, this.x, this.y + (this.font.getSize() - 10));
+    window.ctx.fillText(this.text, this.position.x, this.position.y + (this.font.getSize() - 10));
   }
 }

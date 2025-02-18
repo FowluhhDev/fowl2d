@@ -1,16 +1,13 @@
 import { GameObject } from "../types/object";
-import type { Font } from "./font";
+import { Vec2 } from "../../data/math";
+import { Font } from "./font";
 
 export class TextLabel extends GameObject {
-  x: number;
-  y: number;
   font: Font;
   color: string;
   text: string;
-  constructor(text: string, x: number, y: number, color: string, font: Font) {
-    super(x, y);
-    this.x = x;
-    this.y = y;
+  constructor(text: string, position:Vec2, color: string, font: Font) {
+    super(position, new Vec2(0, 0));
     this.font = font;
     this.color = color;
     this.text = text;
@@ -19,6 +16,6 @@ export class TextLabel extends GameObject {
   draw() {
     window.ctx.fillStyle = this.color;
     window.ctx.font = this.font.getMerged();
-    window.ctx.fillText(this.text, this.x, this.y + (this.font.getSize() - 10));
+    window.ctx.fillText(this.text, this.position.x, this.position.y + (this.font.getSize() - 10));
   }
 }
